@@ -1,19 +1,64 @@
 alerts:
-  - name: TODO_alert_1
-    severity: TODO
-    condition: TODO
+  - name: high_latency_p95
+    title: High Latency
+    severity: page
     type: symptom-based
-    owner: TODO
+    source: data/logs.jsonl
+    related_slo: latency_p95_ms
+    incident_practice: rag_slow
+    condition: 'event == "response_sent" | p95(latency_ms) > 2000 for 5m'
+    threshold:
+      aggregation: p95
+      field: latency_ms
+      operator: gt
+      value: 2000
+      unit: ms
+      duration: 5m
+    slo_threshold:
+      aggregation: p95
+      field: latency_ms
+      operator: lte
+      value: 3000
+      unit: ms
+    dashboard_panel: latency
+    owner: ai-observability-oncall
     runbook: docs/alerts.md#alert-1
-  - name: TODO_alert_2
-    severity: TODO
-    condition: TODO
+
+  - name: high_error_rate
+    title: High Error Rate
+    severity: page
     type: symptom-based
-    owner: TODO
+    source: data/logs.jsonl
+    related_slo: error_rate_pct
+    incident_practice: tool_fail
+    condition: 'count(event == "request_failed") / count(event == "request_received") * 100 > 2.0 for 5m'
+    threshold:
+      aggregation: error_rate_pct
+      numerator_event: request_failed
+      denominator_event: request_received
+      operator: gt
+      value: 2.0
+      unit: percent
+      duration: 5m
+    dashboard_panel: errors
+    owner: ai-observability-oncall
     runbook: docs/alerts.md#alert-2
-  - name: TODO_alert_3
-    severity: TODO
-    condition: TODO
+
+  - name: cost_surge
+    title: Cost Surge
+    severity: ticket
     type: symptom-based
-    owner: TODO
+    source: data/logs.jsonl
+    related_slo: daily_cost_usd
+    incident_practice: cost_spike
+    condition: 'event == "response_sent" | sum(cost_usd) > 2.5 over 60m'
+    threshold:
+      aggregation: total
+      field: cost_usd
+      operator: gt
+      value: 2.5
+      unit: usd
+      duration: 60m
+    dashboard_panel: cost
+    owner: ai-observability-oncall
     runbook: docs/alerts.md#alert-3
