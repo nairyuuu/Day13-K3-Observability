@@ -7,3 +7,8 @@ data/audit.jsonl
 .env
 .pytest_cache/
 .antigravity/
+.claude/
+.codegraph/
+skills-lock.json
+baseline_score.txt
+data/*.jsonl.bak

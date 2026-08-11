@@ -8,6 +8,10 @@ from typing import Any
 # Xếp từ định danh dài/cụ thể nhất xuống ngắn nhất để thẻ tín dụng (13-16 chữ số)
 # và CCCD (12 chữ số) không bị pattern số điện thoại cắt mất một phần.
 PII_PATTERNS: dict[str, str] = {
+    # Secret phải chạy TRƯỚC mọi pattern số, nếu không các nhóm chữ số trong key
+    # sẽ bị pattern CCCD/CMND ăn mất một phần và phần còn lại vẫn lộ ra ngoài.
+    # Bắt pk-lf-/sk-lf- (Langfuse) và cả sk-ant-/sk-proj- của provider khác.
+    "api_key": r"\b(?:pk|sk)-[A-Za-z0-9_-]{16,}",
     # Local part cho phép dấu "+" (user+tag@example.com).
     "email": r"[\w.+-]+@[\w.-]+\.\w+",
     # Thẻ 13-16 chữ số dạng 4-4-4-N, cộng thêm layout Amex 4-6-5.
