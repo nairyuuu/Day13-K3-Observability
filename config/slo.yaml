@@ -1,16 +1,44 @@
 service: day13-observability-lab
 window: 28d
+source: data/logs.jsonl
 slis:
   latency_p95_ms:
+    description: API response latency at the 95th percentile.
+    event: response_sent
+    field: latency_ms
+    aggregation: p95
     objective: 3000
+    operator: lte
+    unit: ms
     target: 99.5
-    note: Replace with your group's target
+    dashboard_panel: latency
   error_rate_pct:
-    objective: 2
+    description: Failed requests divided by received requests.
+    numerator_event: request_failed
+    denominator_event: request_received
+    aggregation: rate_pct
+    objective: 2.0
+    operator: lte
+    unit: percent
     target: 99.0
-  daily_cost_usd:
-    objective: 2.5
-    target: 100.0
-  quality_score_avg:
+    dashboard_panel: errors
+  quality_score_mean:
+    description: Mean response quality proxy score.
+    event: response_sent
+    field: quality_score
+    aggregation: mean
     objective: 0.75
+    operator: gte
+    unit: score_0_to_1
     target: 95.0
+    dashboard_panel: quality
+  daily_cost_usd:
+    description: Total estimated model cost over the dashboard window.
+    event: response_sent
+    field: cost_usd
+    aggregation: total
+    objective: 2.5
+    operator: lte
+    unit: usd
+    target: 100.0
+    dashboard_panel: cost
