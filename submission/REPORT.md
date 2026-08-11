@@ -37,7 +37,7 @@
 ## 5. Dashboard, SLO và alerts
 
 - Kết quả `validate_dashboard.py`: **HỢP LỆ: 6/6 panel**
-- Evidence dashboard: `submission/evidence/runtime_dashboard.svg`; runtime dashboard trả HTTP 200, render đủ 6 panel và hiển thị slow correlation ID.
+- Evidence dashboard: `submission/evidence/dashboard.png` (ảnh runtime thật); dashboard trả HTTP 200, render đủ 6 panel, time range 60 phút, units, thresholds và slow correlation ID. Bản đối chiếu: `submission/evidence/runtime_dashboard.svg`.
 - SLO đã chọn và lý do: Latency P95 ≤ 3000 ms, error rate ≤ 2%, quality mean ≥ 0.75 và total cost ≤ 2.5 USD theo `config/dashboard.yaml`/`config/slo.yaml`; các ngưỡng bao phủ latency, reliability, quality và cost.
 - Alert rules và runbook: `config/alert_rules.yaml` và `docs/alerts.md`.
 
@@ -48,7 +48,7 @@
 - Trace ID liên quan: `4e0b031efe36fe80c3b401c07d9fa664` (session `s09`, latency 2.652 giây)
 - Log line/correlation ID liên quan: `req-d8f21dc9`, event `response_sent`, `latency_ms=2653`
 - Root cause: practice incident `rag_slow` thêm độ trễ vào bước RAG/agent, làm toàn bộ trace chậm nhưng không tạo HTTP error.
-- Fix action: chạy `python scripts/inject_incident.py --scenario rag_slow --disable`; health endpoint xác nhận `rag_slow=false`.
+- Fix action: chạy `python scripts/inject_incident.py --scenario rag_slow --disable`; `submission/evidence/api_health.png` xác nhận health endpoint có `rag_slow=false` và `tracing_enabled=true`.
 - Preventive measure: alert trên P95, giữ correlation ID xuyên metrics → trace → log, và dùng runbook rollback/disable incident trước khi mở rộng điều tra.
 
 ## 7. Đóng góp cá nhân
