@@ -11,3 +11,4 @@ data/audit.jsonl
 .codegraph/
 skills-lock.json
 baseline_score.txt
+data/*.jsonl.bak
