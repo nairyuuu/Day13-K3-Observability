@@ -21,7 +21,7 @@ Giữ time range mặc định 60 phút, refresh 30 giây và hiển thị thres
 
 1. Hoàn thiện logging/PII và chạy API.
 2. Chạy `python scripts/load_test.py --concurrency 5` để tạo baseline.
-3. Dùng `data/logs.jsonl` làm nguồn chuẩn để tạo đúng sáu panel bằng Streamlit, notebook, Grafana hoặc công cụ tương đương. Langfuse vẫn là nơi mở trace/prompt version để điều tra sâu.
+3. Dùng `data/logs.jsonl` làm nguồn chuẩn để tạo đúng sáu panel bằng Streamlit. Langfuse vẫn là nơi mở trace/prompt version để điều tra sâu.
 4. Đặt tên panel, đơn vị và threshold giống contract.
 5. Chạy validator:
 
@@ -30,6 +30,23 @@ python scripts/validate_dashboard.py
 ```
 
 Validator kiểm tra cấu trúc contract; nó không thể chứng minh biểu đồ trong ảnh dùng đúng dữ liệu. Evidence runtime vẫn bắt buộc.
+
+## Chạy Streamlit dashboard
+
+Sau khi cài dependency từ `requirements.txt`, chạy tại thư mục gốc repository:
+
+```bash
+streamlit run scripts/dashboard_app.py
+```
+
+Dashboard mặc định đọc cửa sổ realtime 60 phút và tự refresh mỗi 30 giây theo
+`config/dashboard.yaml`. Nút **Refresh now** cho phép cập nhật thủ công. Nếu cần xem
+lại evidence cũ đã nằm ngoài cửa sổ realtime, chọn **Latest log event** ở sidebar;
+cửa sổ vẫn giữ nguyên 60 phút nhưng neo vào timestamp mới nhất trong file.
+
+Mỗi panel lấy title, event, unit và threshold trực tiếp từ contract. Các request lỗi
+và latency spike sẽ hiện `correlation_id` kèm nút copy trong panel tương ứng để tra
+log/trace. Có thể hover, zoom và ẩn/hiện từng series trên biểu đồ.
 
 ## Cách kiểm tra runtime
 
