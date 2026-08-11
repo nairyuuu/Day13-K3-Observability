@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <rect width="1600" height="900" fill="#07111f"/>
+  <text x="70" y="70" fill="#56d6c9" font-family="Segoe UI,Arial" font-size="22" font-weight="700">ISSUE #11 · LANGFUSE TRACE EVIDENCE</text>
+  <text x="70" y="130" fill="#edf4ff" font-family="Segoe UI,Arial" font-size="46" font-weight="700">Two traces, two prompt versions</text>
+  <text x="70" y="175" fill="#9fb3cd" font-family="Segoe UI,Arial" font-size="22">Same input: Explain the monitoring policy</text>
+  <rect x="70" y="235" width="1460" height="230" rx="24" fill="#11233a" stroke="#294766" stroke-width="2"/>
+  <text x="105" y="290" fill="#6ee7a8" font-family="Segoe UI,Arial" font-size="28" font-weight="700">BASELINE · VERSION 1</text>
+  <text x="105" y="350" fill="#edf4ff" font-family="Consolas,monospace" font-size="26" font-weight="700">78be319e96f604227a88212955b9dfeb</text>
+  <text x="105" y="405" fill="#9fb3cd" font-family="Segoe UI,Arial" font-size="23">prompt_name=day13-chat · prompt_label=baseline · prompt_version=1 · prompt_source=langfuse</text>
+  <rect x="70" y="510" width="1460" height="230" rx="24" fill="#11233a" stroke="#294766" stroke-width="2"/>
+  <text x="105" y="565" fill="#ffd166" font-family="Segoe UI,Arial" font-size="28" font-weight="700">CANDIDATE · VERSION 2</text>
+  <text x="105" y="625" fill="#edf4ff" font-family="Consolas,monospace" font-size="26" font-weight="700">5f924504998d67cc10af775a9964a53c</text>
+  <text x="105" y="680" fill="#9fb3cd" font-family="Segoe UI,Arial" font-size="23">prompt_name=day13-chat · prompt_label=candidate · prompt_version=2 · prompt_source=langfuse</text>
+  <text x="70" y="840" fill="#9fb3cd" font-family="Segoe UI,Arial" font-size="18">Source: authenticated Langfuse Trace API · jp.cloud.langfuse.com · 2026-08-11</text>
+</svg>
