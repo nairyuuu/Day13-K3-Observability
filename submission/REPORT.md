@@ -4,7 +4,7 @@
 
 - Tên nhóm: B2.2
 - Repository URL: https://github.com/nairyuuu/Day13-K3-Observability
-- Commit SHA cuối: xem commit chứa file báo cáo này (issue #11 completion)
+- Commit SHA cuối: 749f3af830de01febdc6051889094564700550bb
 - Thành viên và vai trò:
   - Nguyễn Thành Duy — 01599: SRE & Alerts Engineer.
   - Thạch Minh Quân — 01585: Security Engineer.
